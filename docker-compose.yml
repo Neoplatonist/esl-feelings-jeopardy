@@ -1,0 +1,7 @@
+services:
+  jeopardy-app:
+    build: .
+    container_name: jeopardy-game
+    ports:
+      - "9081:80"
+    restart: unless-stopped

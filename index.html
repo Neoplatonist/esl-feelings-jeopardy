@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Jeopardy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <h1>Feelings Jeopardy</h1>
+      <button id="randomize-button">Randomize Cards</button>
+
+      <div class="game-board">
+        <!-- First column - Red category -->
+        <div class="category" style="background-color: #dc3545">Red</div>
+        <div class="card" data-category="red" data-points="1">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #dc3545">1</div>
+            <div class="card-back">
+              <img src="images/happy.png" alt="Happy" data-feeling="happy" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="red" data-points="2">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #dc3545">2</div>
+            <div class="card-back">
+              <img src="images/sad.png" alt="Sad" data-feeling="sad" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="red" data-points="3">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #dc3545">3</div>
+            <div class="card-back">
+              <img src="images/angry.png" alt="Angry" data-feeling="angry" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Second column - Blue category -->
+        <div class="category" style="background-color: #0d6efd">Blue</div>
+        <div class="card" data-category="blue" data-points="1">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #0d6efd">1</div>
+            <div class="card-back">
+              <img
+                src="images/excited.png"
+                alt="Excited"
+                data-feeling="excited"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="blue" data-points="2">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #0d6efd">2</div>
+            <div class="card-back">
+              <img src="images/good.png" alt="Good" data-feeling="good" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="blue" data-points="3">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #0d6efd">3</div>
+            <div class="card-back">
+              <img src="images/great.png" alt="Great" data-feeling="great" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Third column - Green category -->
+        <div class="category" style="background-color: #198754">Green</div>
+        <div class="card" data-category="green" data-points="1">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #198754">1</div>
+            <div class="card-back">
+              <img src="images/hungry.png" alt="Hungry" data-feeling="hungry" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="green" data-points="2">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #198754">2</div>
+            <div class="card-back">
+              <img src="images/scared.png" alt="Scared" data-feeling="scared" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="green" data-points="3">
+          <div class="card-inner">
+            <div class="card-front" style="background-color: #198754">3</div>
+            <div class="card-back">
+              <img src="images/ok.png" alt="OK" data-feeling="ok" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Fourth column - Yellow category -->
+        <div class="category" style="background-color: #ffc107; color: #212529">
+          Yellow
+        </div>
+        <div class="card" data-category="yellow" data-points="1">
+          <div class="card-inner">
+            <div
+              class="card-front"
+              style="background-color: #ffc107; color: #212529"
+            >
+              1
+            </div>
+            <div class="card-back">
+              <img src="images/sick.png" alt="Sick" data-feeling="sick" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="yellow" data-points="2">
+          <div class="card-inner">
+            <div
+              class="card-front"
+              style="background-color: #ffc107; color: #212529"
+            >
+              2
+            </div>
+            <div class="card-back">
+              <img src="images/sleepy.png" alt="Sleepy" data-feeling="sleepy" />
+            </div>
+          </div>
+        </div>
+        <div class="card" data-category="yellow" data-points="3">
+          <div class="card-inner">
+            <div
+              class="card-front"
+              style="background-color: #ffc107; color: #212529"
+            >
+              3
+            </div>
+            <div class="card-back">
+              <img src="images/tired.png" alt="Tired" data-feeling="tired" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay">
+      <div class="zoomed-image-container">
+        <img id="zoomed-image" src="" alt="Zoomed Image" />
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
