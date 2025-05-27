@@ -1,0 +1,546 @@
+/**
+ * CSS Reset and Base Styles
+ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #212529;
+  padding: 10px;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden; /* Prevent scrolling on the body */
+  box-sizing: border-box;
+}
+
+/**
+ * Layout and container styles
+ */
+.game-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100vh;
+  width: 100%;
+  gap: 15px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/**
+ * Typography and heading styles
+ */
+h1 {
+  text-align: center;
+  color: #0056b3;
+  margin: 0 0 20px 0;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 15px;
+}
+
+/**
+ * Controls panel and form elements
+ */
+.controls-panel {
+  width: 280px;
+  flex-shrink: 0;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-self: flex-start;
+}
+
+.difficulty-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.difficulty-selector label {
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.difficulty-selector select {
+  padding: 8px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+}
+
+/* Button styles */
+#randomize-button,
+#flip-all-button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  color: white;
+}
+
+#randomize-button {
+  background-color: #0056b3;
+}
+
+#randomize-button:hover {
+  background-color: #003d7a;
+}
+
+#flip-all-button {
+  background-color: #198754;
+}
+
+#flip-all-button:hover {
+  background-color: #0f5132;
+}
+
+#randomize-button:active,
+#flip-all-button:active {
+  transform: scale(0.98);
+}
+
+#flip-all-button.active {
+  background-color: #dc3545;
+}
+
+#flip-all-button.active:hover {
+  background-color: #b02a37;
+}
+
+.instructions {
+  margin-top: 20px;
+  border-top: 1px solid #dee2e6;
+  padding-top: 20px;
+}
+
+.instructions h3 {
+  margin-bottom: 10px;
+  color: #0056b3;
+}
+
+.instructions p {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #495057;
+}
+
+/**
+ * Legal Information styles
+ */
+.legal-info {
+  margin-top: 20px;
+  border-top: 1px solid #dee2e6;
+  padding-top: 20px;
+  margin-top: auto; /* Push to bottom of flex container */
+}
+
+.legal-info h3 {
+  margin-bottom: 10px;
+  color: #0056b3;
+  font-size: 0.95rem;
+}
+
+.legal-info p {
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #6c757d;
+}
+
+.legal-info a {
+  color: #0056b3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.legal-info a:hover {
+  text-decoration: underline;
+}
+
+/* Make sure the legal info section is also responsive for iPad */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .legal-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .legal-info p {
+    font-size: 1rem;
+  }
+}
+
+/**
+ * Game Board styles
+ */
+.game-board {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  border: 1px solid #dee2e6;
+  max-height: 100%;
+  align-self: stretch;
+  overflow: hidden;
+}
+
+/* Hard mode (4 rows) */
+.game-board.hard-mode {
+  grid-template-rows: auto repeat(4, minmax(0, 1fr));
+}
+
+.category {
+  background-color: #0056b3;
+  color: white;
+  font-weight: 600;
+  padding: 8px 5px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  height: auto;
+  min-height: 25px;
+  max-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/**
+ * Card styles and animations
+ */
+.card {
+  perspective: 1000px;
+  cursor: pointer;
+  min-height: 0;
+  height: 100%;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front {
+  background-color: #0d6efd;
+  color: white;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.card-back {
+  background-color: white;
+  transform: rotateY(180deg);
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dee2e6;
+}
+
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Random point card styling */
+.random-points {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * Overlay for zoomed images
+ */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.overlay.active {
+  display: flex;
+}
+
+.zoomed-image-container {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+#zoomed-image {
+  width: 100%;
+  height: auto;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: white;
+  padding: 10px;
+  border: 2px solid white;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/**
+ * Responsive design
+ */
+@media (max-width: 992px) {
+  .game-container {
+    flex-direction: column;
+    height: auto;
+    max-height: 100vh;
+  }
+
+  .controls-panel {
+    width: 100%;
+    margin-bottom: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .controls-panel h1 {
+    width: 100%;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .difficulty-selector {
+    width: 200px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #randomize-button,
+  #flip-all-button {
+    width: auto;
+    margin-top: 0;
+    min-width: 120px;
+  }
+
+  .instructions {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    order: 3;
+  }
+
+  .legal-info {
+    width: 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    order: 4;
+  }
+
+  .game-board {
+    height: calc(100vh - 180px);
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+  }
+
+  .game-board {
+    gap: 5px;
+    padding: 10px;
+  }
+
+  .category {
+    padding: 5px 2px;
+    min-height: 25px;
+  }
+
+  .card-front {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls-panel {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .controls-panel h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .difficulty-selector {
+    width: 100%;
+  }
+
+  #randomize-button,
+  #flip-all-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .legal-info {
+    text-align: center;
+  }
+
+  .legal-info p {
+    font-size: 0.75rem;
+  }
+
+  .game-board {
+    gap: 3px;
+    padding: 5px;
+  }
+}
+
+/* iPad-specific styles */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .difficulty-selector {
+    width: 280px; /* Match desktop width (280px) */
+  }
+
+  .difficulty-selector label {
+    font-size: 1.3rem; /* Bigger label text */
+    margin-right: 12px;
+    font-weight: 600;
+  }
+
+  .difficulty-selector select {
+    padding: 15px 20px; /* Larger padding for better touch targets */
+    font-size: 1.3rem; /* Bigger font size */
+    height: 55px; /* Taller select element */
+    border: 2px solid #ced4da; /* More visible border */
+  }
+
+  #randomize-button,
+  #flip-all-button {
+    font-size: 1.3rem; /* Bigger button text */
+    padding: 15px 20px; /* Larger padding for better touch targets */
+    height: 55px; /* Taller buttons */
+    font-weight: 700; /* Bolder text */
+  }
+
+  .controls-panel h1 {
+    font-size: 2.2rem; /* Bigger heading */
+    padding-bottom: 20px; /* More space below heading */
+  }
+
+  .instructions {
+    font-size: 1.2rem; /* Bigger instructions text */
+  }
+
+  .instructions p {
+    font-size: 1.1rem; /* Bigger paragraph text */
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .instructions h3 {
+    font-size: 1.4rem; /* Bigger instructions heading */
+    margin-bottom: 15px;
+  }
+
+  .category {
+    font-size: 1.1rem; /* Bigger category text */
+    min-height: 35px; /* Taller category labels */
+    max-height: 40px;
+  }
+
+  .card-front {
+    font-size: 1.8rem; /* Bigger card front text */
+  }
+
+  /* Make the controls panel match desktop layout on iPad */
+  .game-container {
+    flex-direction: row; /* Override the tablet media query to keep desktop layout */
+  }
+
+  .controls-panel {
+    width: 280px; /* Match desktop width */
+    flex-direction: column; /* Match desktop layout */
+    padding: 25px; /* More padding */
+  }
+}

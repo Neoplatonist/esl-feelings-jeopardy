@@ -3,143 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Color Jeopardy</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Feelings Jeopardy</title>
+    <meta
+      name="description"
+      content="An interactive jeopardy-style game for learning feelings vocabulary"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="game-container">
-      <h1>Feelings Jeopardy</h1>
-      <button id="randomize-button">Randomize Cards</button>
+      <div class="controls-panel">
+        <h1>Feelings Jeopardy</h1>
+        <div class="difficulty-selector">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty">
+            <option value="normal">Normal</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <button id="randomize-button">Randomize Cards</button>
+        <button id="flip-all-button">Show All Cards</button>
+        <div class="instructions">
+          <h3>How to Play</h3>
+          <p>
+            Make teams and have the players take turns selecting cards (Color
+            and Point).
+          </p>
+          <p>Click on a card to reveal the feeling or point value.</p>
+          <p>Use "Show All Cards" to flip all cards at once without zooming.</p>
+          <p>Change difficulty or randomize cards using the controls above.</p>
+        </div>
+
+        <div class="legal-info">
+          <h3>Terms &amp; Copyright</h3>
+          <p>
+            &copy; 2025 <a href="https://cultofcode.com">Cult of Code</a>. All
+            rights reserved.
+          </p>
+          <p>
+            This game is for educational purposes only. Images and content may
+            not be redistributed without permission. Images are courtesy of
+            <a href="https://www.irasutoya.com/p/terms.html">Irasutoya</a>
+          </p>
+          <p>
+            By using this game, you agree to our
+            <a href="#" id="terms-link"> Terms of Service</a>.
+          </p>
+        </div>
+      </div>
 
       <div class="game-board">
-        <!-- First column - Red category -->
-        <div class="category" style="background-color: #dc3545">Red</div>
-        <div class="card" data-category="red" data-points="1">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #dc3545">1</div>
-            <div class="card-back">
-              <img src="images/happy.png" alt="Happy" data-feeling="happy" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="red" data-points="2">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #dc3545">2</div>
-            <div class="card-back">
-              <img src="images/sad.png" alt="Sad" data-feeling="sad" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="red" data-points="3">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #dc3545">3</div>
-            <div class="card-back">
-              <img src="images/angry.png" alt="Angry" data-feeling="angry" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Second column - Blue category -->
-        <div class="category" style="background-color: #0d6efd">Blue</div>
-        <div class="card" data-category="blue" data-points="1">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #0d6efd">1</div>
-            <div class="card-back">
-              <img
-                src="images/excited.png"
-                alt="Excited"
-                data-feeling="excited"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="blue" data-points="2">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #0d6efd">2</div>
-            <div class="card-back">
-              <img src="images/good.png" alt="Good" data-feeling="good" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="blue" data-points="3">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #0d6efd">3</div>
-            <div class="card-back">
-              <img src="images/great.png" alt="Great" data-feeling="great" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Third column - Green category -->
-        <div class="category" style="background-color: #198754">Green</div>
-        <div class="card" data-category="green" data-points="1">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #198754">1</div>
-            <div class="card-back">
-              <img src="images/hungry.png" alt="Hungry" data-feeling="hungry" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="green" data-points="2">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #198754">2</div>
-            <div class="card-back">
-              <img src="images/scared.png" alt="Scared" data-feeling="scared" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="green" data-points="3">
-          <div class="card-inner">
-            <div class="card-front" style="background-color: #198754">3</div>
-            <div class="card-back">
-              <img src="images/ok.png" alt="OK" data-feeling="ok" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Fourth column - Yellow category -->
-        <div class="category" style="background-color: #ffc107; color: #212529">
-          Yellow
-        </div>
-        <div class="card" data-category="yellow" data-points="1">
-          <div class="card-inner">
-            <div
-              class="card-front"
-              style="background-color: #ffc107; color: #212529"
-            >
-              1
-            </div>
-            <div class="card-back">
-              <img src="images/sick.png" alt="Sick" data-feeling="sick" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="yellow" data-points="2">
-          <div class="card-inner">
-            <div
-              class="card-front"
-              style="background-color: #ffc107; color: #212529"
-            >
-              2
-            </div>
-            <div class="card-back">
-              <img src="images/sleepy.png" alt="Sleepy" data-feeling="sleepy" />
-            </div>
-          </div>
-        </div>
-        <div class="card" data-category="yellow" data-points="3">
-          <div class="card-inner">
-            <div
-              class="card-front"
-              style="background-color: #ffc107; color: #212529"
-            >
-              3
-            </div>
-            <div class="card-back">
-              <img src="images/tired.png" alt="Tired" data-feeling="tired" />
-            </div>
-          </div>
-        </div>
+        <!-- Game board will be generated dynamically by JavaScript -->
       </div>
     </div>
 
@@ -149,6 +63,7 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script src="js/terms.js"></script>
   </body>
 </html>
