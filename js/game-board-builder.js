@@ -280,7 +280,15 @@ export class GameBoardBuilder {
     img.src = `images/${feeling}.png`;
     img.alt = Utils.capitalizeFirst(feeling);
     img.dataset.feeling = feeling;
+
+    // Create and add the title
+    const titleElement = document.createElement("div");
+    titleElement.className = "image-title";
+    titleElement.textContent = Utils.capitalizeFirst(feeling);
+    titleElement.dataset.feeling = feeling;
+
     cardBack.appendChild(img);
+    cardBack.appendChild(titleElement);
   }
 
   /**

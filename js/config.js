@@ -43,11 +43,17 @@ export const CONFIG = {
     active: "active",
     pointCard: "point-card",
     hardMode: "hard-mode",
+    showTitles: "show-titles",
+    accordionOpen: "open",
   },
 
   // Animation timings
   ANIMATION: {
     flipDuration: 500, // ms
     zoomOutDelay: 300, // ms
+    zoomInDuration: 300, // ms
+    zoomTitleDelay: 100, // ms
+    fadeUpDuration: 400, // ms
+    fadeUpDelay: 200, // ms
   },
 };

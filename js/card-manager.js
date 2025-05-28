@@ -48,7 +48,12 @@ export class CardManager {
    * @param {HTMLElement} card - The card element to zoom in on
    */
   zoomInCard(card) {
-    if (card.classList.contains(CONFIG.CLASSES.pointCard)) {
+    // Cache DOM elements to avoid duplicate queries
+    const zoomedTitle = document.getElementById("zoomed-title");
+    const isPointCard = card.classList.contains(CONFIG.CLASSES.pointCard);
+    const animationTiming = `${CONFIG.ANIMATION.zoomInDuration}ms cubic-bezier(0.175, 0.885, 0.32, 1.275)`;
+
+    if (isPointCard) {
       // For point cards, display the points value in the zoomed view
       const pointsElement = card.querySelector(".random-points");
       const pointsValue = pointsElement.textContent;
@@ -59,12 +64,36 @@ export class CardManager {
         pointsElement.style.color
       );
       this.zoomedImage.alt = "Points: " + pointsValue;
+
+      // Clear any title for point cards
+      if (zoomedTitle) {
+        zoomedTitle.textContent = "";
+      }
     } else {
       // For regular image cards, display the image
       const img = card.querySelector(".card-back img");
       this.zoomedImage.src = img.src;
       this.zoomedImage.alt = img.alt;
+
+      // Set the zoomed title
+      const titleElement = card.querySelector(".image-title");
+      if (titleElement && zoomedTitle) {
+        zoomedTitle.textContent = titleElement.textContent;
+        zoomedTitle.dataset.feeling = titleElement.dataset.feeling;
+      }
     }
+
+    // Reset animations by triggering a browser reflow
+    if (zoomedTitle) {
+      zoomedTitle.style.animation = "none";
+      void zoomedTitle.offsetWidth; // Trigger browser reflow
+      zoomedTitle.style.animation = `zoomIn ${animationTiming} ${CONFIG.ANIMATION.zoomTitleDelay}ms`;
+    }
+
+    // Reset image animation
+    this.zoomedImage.style.animation = "none";
+    void this.zoomedImage.offsetWidth; // Trigger browser reflow
+    this.zoomedImage.style.animation = `zoomIn ${animationTiming}`;
 
     this.overlay.classList.add(CONFIG.CLASSES.active);
     this.activeCard = card;
@@ -75,9 +104,16 @@ export class CardManager {
    */
   zoomOutCard() {
     this.overlay.classList.remove(CONFIG.CLASSES.active);
+
+    // Reset content after animation completes
     setTimeout(() => {
       this.zoomedImage.src = "";
+      const zoomedTitle = document.getElementById("zoomed-title");
+      if (zoomedTitle) {
+        zoomedTitle.textContent = "";
+      }
     }, CONFIG.ANIMATION.zoomOutDelay);
+
     // Keep activeCard reference for possible re-zooming
   }
 
@@ -121,5 +157,25 @@ export class CardManager {
         card.classList.remove(CONFIG.CLASSES.flipped);
       }
     });
+  }
+
+  /**
+   * Sets all cards to a specific state (shown or hidden)
+   * @param {boolean} showCards - Whether to show all cards (true) or hide them (false)
+   */
+  setAllCardsState(showCards) {
+    const cards = document.querySelectorAll(".card");
+
+    if (showCards) {
+      // Flip all cards to reveal the back
+      cards.forEach((card) => {
+        card.classList.add(CONFIG.CLASSES.flipped);
+      });
+    } else {
+      // Flip all cards back to the front
+      cards.forEach((card) => {
+        card.classList.remove(CONFIG.CLASSES.flipped);
+      });
+    }
   }
 }
