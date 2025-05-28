@@ -607,8 +607,8 @@ input:checked + .slider:before {
   position: absolute;
   top: 15px;
   left: 15px;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   pointer-events: auto; /* Enable clicks on logo */
@@ -626,6 +626,13 @@ input:checked + .slider:before {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /* Apply color filter for dark version of logo */
+  filter: brightness(0) saturate(100%); /* Makes the logo black */
+}
+
+/* If you want a light version for dark backgrounds later */
+.dark-mode .company-logo {
+  filter: brightness(0) saturate(100%) invert(1); /* Makes the logo white */
 }
 
 /* Navigation menu styling */
@@ -778,8 +785,8 @@ input:checked + .slider:before {
   .logo-container {
     top: 10px;
     left: 10px;
-    width: 35px;
-    height: 35px;
+    width: 50px;
+    height: 50px;
   }
 
   .nav-menu {
@@ -792,8 +799,8 @@ input:checked + .slider:before {
   .logo-container {
     top: 15px;
     left: 15px;
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
   }
 
   .nav-menu {
