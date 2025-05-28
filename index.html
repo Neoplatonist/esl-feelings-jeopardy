@@ -11,6 +11,38 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="overlay-ui">
+      <a href="/" class="logo-container">
+        <img
+          src="images/cultofcode-logo.svg"
+          alt="Cult of Code Logo"
+          class="company-logo"
+        />
+      </a>
+      <nav class="nav-menu">
+        <button
+          id="menu-button"
+          class="menu-toggle"
+          aria-label="Toggle navigation menu"
+        >
+          <span class="menu-icon"></span>
+          <span class="menu-icon"></span>
+          <span class="menu-icon"></span>
+        </button>
+        <div class="menu-drawer">
+          <div class="menu-drawer-header">
+            <h3>Menu</h3>
+            <button class="close-menu" aria-label="Close menu">×</button>
+          </div>
+          <ul class="menu-links">
+            <li><a href="https://cultofcode.com">Home</a></li>
+            <li><a href="https://cultofcode.com/games">More Games</a></li>
+            <li><a href="https://cultofcode.com/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
     <div class="game-container">
       <div class="controls-panel">
         <h1>Feelings Jeopardy</h1>
@@ -89,5 +121,6 @@
 
     <script type="module" src="js/main.js"></script>
     <script src="js/terms.js"></script>
+    <script src="js/menu.js"></script>
   </body>
 </html>
