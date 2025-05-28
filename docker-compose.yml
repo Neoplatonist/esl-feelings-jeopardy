@@ -1,6 +1,9 @@
 services:
   jeopardy-app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: feelings-jeopardy-app
     container_name: jeopardy-game
     ports:
       - "9081:80"
