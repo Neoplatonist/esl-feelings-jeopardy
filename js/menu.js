@@ -1,7 +1,7 @@
 /**
  * Menu toggle functionality for the navigation drawer
  */
-document.addEventListener("DOMContentLoaded", () => {
+export function initializeMenu() {
   const menuButton = document.getElementById("menu-button");
   const navMenu = document.querySelector(".nav-menu");
   const closeMenuButton = document.querySelector(".close-menu");
@@ -87,4 +87,4 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
+}

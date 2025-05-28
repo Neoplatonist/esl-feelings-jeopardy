@@ -2,7 +2,7 @@
  * Terms of Service Modal Functionality
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+export function initializeTerms() {
   const termsLink = document.getElementById("terms-link");
 
   if (termsLink) {
@@ -20,4 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     });
   }
-});
+}
