@@ -1,6 +1,14 @@
 #!/usr/bin/env fish
+#
+# Feelings Jeopardy Game Launcher
+# ------------------------------
+# This script launches the Feelings Jeopardy game using Docker if available,
+# or directly in a browser if Docker is not available.
+#
+# Author: Cult of Code Team
+# Version: 1.0.1
+#
 
-# Script to open the Feelings Jeopardy game
 set DIR (dirname (status --current-filename))
 
 # Check if Docker is installed and compose file exists
@@ -36,7 +44,7 @@ if command -v docker > /dev/null && test -f "$DIR/docker-compose.yml"
         end
         
         # Open in browser
-        open "http://localhost:9081"
+        open "http://192.168.9.3:9081"
         
         echo ""
         echo "Press Ctrl+C when you want to stop the server"

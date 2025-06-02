@@ -70,24 +70,11 @@
             </label>
           </div>
         </div>
-        <div class="instructions">
-          <div class="instructions-header">
-            <h3>How to Play</h3>
-            <span class="toggle-icon">+</span>
-          </div>
-          <div class="instructions-content">
-            <p>
-              Make teams and have the players take turns selecting cards (Color
-              and Point).
-            </p>
-            <p>Click on a card to reveal the feeling or point value.</p>
-            <p>
-              Use "Show All Cards" to flip all cards at once without zooming.
-            </p>
-            <p>
-              Change difficulty or randomize cards using the controls above.
-            </p>
-          </div>
+        <div class="instructions-trigger">
+          <button id="instructions-button" class="instructions-btn">
+            <span class="btn-icon">?</span>
+            How to Play
+          </button>
         </div>
 
         <div class="legal-info">
@@ -116,6 +103,24 @@
       <div class="zoomed-image-container" id="zoomed-image-container">
         <img id="zoomed-image" src="" alt="Zoomed Image" />
         <div id="zoomed-title"></div>
+      </div>
+    </div>
+
+    <div id="instructions-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>How to Play</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Make teams and have the players take turns selecting cards (Color
+            and Point).
+          </p>
+          <p>Click on a card to reveal the feeling or point value.</p>
+          <p>Use "Show All Cards" to flip all cards at once without zooming.</p>
+          <p>Change difficulty or randomize cards using the controls above.</p>
+        </div>
       </div>
     </div>
 

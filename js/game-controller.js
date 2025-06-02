@@ -1,3 +1,14 @@
+/**
+ * @fileoverview Main Game Controller module
+ *
+ * This file contains the GameController class which orchestrates the game's functionality
+ * by managing the overall game state, handling user interactions, and coordinating
+ * between different components.
+ *
+ * @author Cult of Code Team
+ * @version 1.0.0
+ */
+
 import { CONFIG } from "./config.js";
 import { CardManager } from "./card-manager.js";
 import { GameBoardBuilder } from "./game-board-builder.js";
@@ -16,7 +27,9 @@ export class GameController {
     this.difficultySelect = document.getElementById("difficulty");
     this.flipAllSwitch = document.getElementById("flip-all-switch");
     this.titleToggle = document.getElementById("title-switch");
-    this.instructionsHeader = document.querySelector(".instructions-header");
+    this.instructionsButton = document.getElementById("instructions-button");
+    this.instructionsModal = document.getElementById("instructions-modal");
+    this.closeModalButton = document.querySelector(".close-modal");
 
     // Game state
     this.currentDifficulty = CONFIG.DEFAULTS.difficulty;
@@ -43,44 +56,57 @@ export class GameController {
     // Initialize the game
     this.initializeGame();
   }
-
   /**
    * Set up event listeners for game controls
+   * Establishes all event bindings for UI components
+   * @private
    */
   setupEventListeners() {
+    // Game control event listeners
     this.randomizeButton.addEventListener("click", this.randomizeCards);
     this.difficultySelect.addEventListener("change", this.changeDifficulty);
 
-    // Add flip all cards toggle switch listener
+    // Toggle switches
     if (this.flipAllSwitch) {
-      this.flipAllSwitch.addEventListener(
-        "change",
-        this.toggleAllCards.bind(this)
-      );
+      this.flipAllSwitch.addEventListener("change", this.toggleAllCards);
     }
 
-    // Add title toggle event listener if the element exists
     if (this.titleToggle) {
       this.titleToggle.addEventListener("change", this.toggleTitles);
     }
 
-    // Add instructions accordion toggle
-    if (this.instructionsHeader) {
-      this.instructionsHeader.addEventListener(
+    // Instructions modal management
+    if (this.instructionsButton) {
+      this.instructionsButton.addEventListener(
         "click",
-        this.toggleInstructions.bind(this)
+        this.openInstructionsModal.bind(this)
       );
     }
+
+    if (this.closeModalButton) {
+      this.closeModalButton.addEventListener(
+        "click",
+        this.closeInstructionsModal.bind(this)
+      );
+    }
+
+    // Close modal when clicking outside of modal content
+    window.addEventListener("click", (event) => {
+      if (event.target === this.instructionsModal) {
+        this.closeInstructionsModal();
+      }
+    });
   }
 
   /**
    * Initialize the game with default settings
+   * Sets up the initial game state and renders the game board
+   * @public
    */
   initializeGame() {
-    // Set up initial difficulty
+    // Set up initial UI states based on default settings
     this.difficultySelect.value = this.currentDifficulty;
 
-    // Initialize toggle states
     if (this.titleToggle) {
       this.titleToggle.checked = this.showTitles;
     }
@@ -89,7 +115,12 @@ export class GameController {
       this.flipAllSwitch.checked = this.allCardsFlipped;
     }
 
-    // Create initial game board and randomize cards
+    // Ensure modals are in correct initial state
+    if (this.instructionsModal) {
+      this.instructionsModal.style.display = "none";
+    }
+
+    // Initialize game board with current settings
     this.boardBuilder.createGameBoard(this.currentDifficulty);
     this.randomizeCards();
   }
@@ -184,10 +215,26 @@ export class GameController {
   }
 
   /**
-   * Toggles the instructions accordion open/closed state
+   * Opens the instructions modal
+   * Displays the modal and disables background scrolling
+   * @public
    */
-  toggleInstructions() {
-    const instructionsSection = document.querySelector(".instructions");
-    instructionsSection.classList.toggle(CONFIG.CLASSES.accordionOpen);
+  openInstructionsModal() {
+    if (this.instructionsModal) {
+      this.instructionsModal.style.display = "block";
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    }
+  }
+
+  /**
+   * Closes the instructions modal
+   * Hides the modal and restores background scrolling
+   * @public
+   */
+  closeInstructionsModal() {
+    if (this.instructionsModal) {
+      this.instructionsModal.style.display = "none";
+      document.body.style.overflow = ""; // Restore scrolling
+    }
   }
 }
